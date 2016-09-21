@@ -1,0 +1,27 @@
+buildapp:
+    image: gobuild
+    volumes:
+      - ./code:/go/src/helloapp
+      - ./deploy:/tmp/deploy/
+    entrypoint: buildgo.sh
+
+nginx:
+    image: gonginx
+    container_name: nginx
+    links:
+      - node1:node1
+      - node2:node2
+    ports:
+      - "80:80"
+node1:
+    image: godeploy
+    volumes:
+      - deploy/helloapp:/go/bin/helloapp
+    ports:
+      - "8484"
+node2:
+    image: godeploy
+    volumes:
+      - deploy/helloapp:/go/bin/helloapp
+    ports:
+      - "8484"
