@@ -1,6 +1,9 @@
 nginx:
     image: gonginx
     container_name: nginx
+    depends_on:
+      - node1
+      - node2
     links:
       - node1:node1
       - node2:node2
@@ -10,13 +13,13 @@ node1:
     image: godeploy
     container_name: node1
     volumes:
-      - deploy/helloapp:/go/bin/helloapp
+      - /home/jenkins/goapp/deploy/helloapp:/go/bin/helloapp
     ports:
       - "8484"
 node2:
     image: godeploy
     container_name: node2
     volumes:
-      - deploy/helloapp:/go/bin/helloapp
+      - /home/jenkins/goapp/deploy/helloapp:/go/bin/helloapp
     ports:
       - "8484"
