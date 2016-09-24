@@ -2,17 +2,17 @@
   connection: local
   become: yes
   tasks:
-  - name: Container is running
-    command: /bin/docker run --rm -v /home/jenkins/goapp/code:/go/src/helloapp -v /home/jenkins/goapp/deploy:/tmp/deploy gobuild sh buildgo.sh
-
-  - name: change permissions
-    command: chown jenkins:jenkins /home/jenkins/goapp/deploy/helloapp
-
   - name: stop runing docker compose
     command: /usr/local/bin/docker-compose stop
 
   - name: remove docker compose
     command: /usr/local/bin/docker-compose rm -f
+
+  - name: Container is running
+    command: /bin/docker run --rm -v /home/jenkins/goapp/code:/go/src/helloapp -v /home/jenkins/goapp/deploy:/tmp/deploy gobuild sh buildgo.sh
+
+  - name: change permissions
+    command: chown jenkins:jenkins /home/jenkins/goapp/deploy/helloapp
 
   - name: remove docker compose
     command: /usr/local/bin/docker-compose up -d
