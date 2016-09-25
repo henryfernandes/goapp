@@ -19,3 +19,5 @@ nginxserver:
       - node2:node2
     ports:
       - "80:80"
+    stdin_open: true
+    tty: true
