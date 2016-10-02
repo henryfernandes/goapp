@@ -2,6 +2,4 @@
 # and a workspace (GOPATH) configured at /go.
 FROM golang
 
-ADD helloapp /go/bin/helloapp
-
 ENTRYPOINT ["/go/bin/helloapp"]

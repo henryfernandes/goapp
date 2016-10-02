@@ -1,19 +1,20 @@
 node1:
     image: godeploy
     volumes:
-      - /home/jenkins/goapp/deploy/helloapp:/go/bin/helloapp
+      - $PWD/deploy/helloapp:/go/bin/helloapp
     ports:
       - "8484"
 
 node2:
     image: godeploy
     volumes:
-      - /home/jenkins/goapp/deploy/helloapp:/go/bin/helloapp
+      - $PWD/deploy/helloapp:/go/bin/helloapp
     ports:
       - "8484"
 
 nginxserver:
     image: gonginx
+    command: nginx -g 'daemon off;'
     links:
       - node1:node1
       - node2:node2

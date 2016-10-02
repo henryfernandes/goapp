@@ -5,4 +5,4 @@ FROM golang
 RUN mkdir -p /go/src/helloapp
 RUN mkdir -p /tmp/deploy/
 
-ADD buildgo.sh buildgo.sh
+ADD buildgo.sh /tmp/buildgo.sh
