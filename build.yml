@@ -3,6 +3,9 @@
   become: yes
   tasks:
 
+  - name: Stop and Remove contianers using docker-compose
+    shell: /usr/local/bin/docker-compose stop && /usr/local/bin/docker-compose rm -f
+
   - name: Build image for gobuild
     shell: cd /opt/gitrepo/goapp/build/ && docker build -t gobuild .
 
@@ -14,4 +17,7 @@
 
   - name: Build image for godeploy
     shell: cd /opt/gitrepo/goapp/deploy/ && docker build -t godeploy .
+
+  - name: Build contianers using docker-compose
+    shell: /usr/local/bin/docker-compose up -d
 
